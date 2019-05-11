@@ -1,0 +1,106 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 40vmin;
+  pointer-events: none;
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.home-header {
+  background-color: #4881d6;
+}
+
+.home-title {
+  margin: 10px 0;
+  padding-left: 1em;
+  color: whitesmoke;
+}
+
+.page-title {
+  margin: 10px 0px;
+  padding-left: 1em;
+  color: grey;
+ }
+
+.page-content {
+  padding: 4em 0;
+}
+
+.btn-logout {
+  background-color: #d16c6c;
+  color: whitesmoke;
+}
+
+.command-number {
+  color: whitesmoke;
+}
+
+.logout-command-div {
+  display: inline-flex;
+  margin-top: 0.5em;
+  align-items: center
+}
+
+.not-centered-text {
+  text-align: unset;
+}
+.command-div {
+  margin-right: 1em;
+}
+
+.command-header {
+  float: right !important
+}
+
+.goodies-part {
+ background-color: #e0e0e0;
+
+}
+
+.events-part {
+  background-color: #dbdbdb;
+}
+
+.Login {
+  width: 100%;
+  max-width: 600px;
+  margin: auto;
+  margin-top: 100px;
+}
+
+.part-title {
+  margin-top: 0px;
+  padding-top: 10px
+}
+
+.fill { 
+  min-height: 100%;
+  height: 100%;
+  box-sizing:border-box;
+}
