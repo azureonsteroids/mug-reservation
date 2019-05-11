@@ -1,3 +1,6 @@
 module.exports = {
-    "secret" : "mugReservationAppSecret"
+    "secret" : "mugReservationAppSecret",
+    "mongoDb": {
+        "url": 'mug-mongo-service.mug'
+    }
 }

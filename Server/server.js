@@ -1,8 +1,9 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require('body-parser');
+const config = require('./config/config');
 
-mongoose.connect('mongodb://localhost/db').then(() => {
+mongoose.connect('mongodb://' + config.mongoDb.url + '/mug').then(() => {
     console.log('Connected to mongoDB')
 }).catch(e => {
     console.log('Error while DB connecting');
@@ -30,6 +31,11 @@ var router = express.Router();
 app.use('/user', router);
 require(__dirname + '/controllers/userController')(router);
 
+app.get('/', (req, res) => {
+    return res.status(200).json({
+        "text": "coucou "
+    })
+})
 
 var port = 8001;
 app.listen(port, () => console.log(`Listening on port ${port}`));
