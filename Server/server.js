@@ -27,9 +27,13 @@ app.use(function (req, res, next) {
     next();
 });
 
-var router = express.Router();
-app.use('/user', router);
-require(__dirname + '/controllers/userController')(router);
+var userRouter = express.Router();
+app.use('/user', userRouter);
+require(__dirname + '/controllers/userController')(userRouter);
+
+var goodyRouter = express.Router();
+app.use('/goody', goodyRouter);
+require(__dirname + '/controllers/goodyController')(goodyRouter);
 
 app.get('/', (req, res) => {
     return res.status(200).json({

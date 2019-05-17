@@ -1,0 +1,12 @@
+{
+  "name": "mug-goodies-consumer",
+  "version": "1.0.0",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "@azure/service-bus": "^1.0.0-preview.3",
+    "mongoose": "^5.0.7"
+  }
+}
