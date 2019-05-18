@@ -1,37 +1,3 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
 .home-header {
   background-color: #4881d6;
 }
@@ -79,12 +45,10 @@
 }
 
 .goodies-part {
- background-color: #e0e0e0;
-
+  
 }
 
 .events-part {
-  background-color: #dbdbdb;
 }
 
 .Login {
@@ -100,7 +64,41 @@
 }
 
 .fill { 
+  
   min-height: 100%;
   height: 100%;
   box-sizing:border-box;
+}
+
+.goody-card {
+  padding: 1em;
+  margin: 1em 0 ;
+  border:1px dotted black;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
+.goody-card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.card-title {
+  font-size: 1.5em !important;
+  font-weight: bold !important;
+}
+
+.card-text {
+}
+
+.div-title {
+  padding: 0 0;
+  margin: 1em 1em 1em 1em;
+  border-bottom: 1px dotted grey;
+}
+
+.event-date {
+  margin-left: 0.4em;
+}
+
+.goody-description {
+  height: 3em;
 }

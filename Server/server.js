@@ -35,9 +35,13 @@ var goodyRouter = express.Router();
 app.use('/goody', goodyRouter);
 require(__dirname + '/controllers/goodyController')(goodyRouter);
 
+var eventRouter = express.Router();
+app.use('/event', eventRouter);
+require(__dirname + '/controllers/eventController')(eventRouter);
+
 app.get('/', (req, res) => {
     return res.status(200).json({
-        "text": "coucou "
+        "text": "base backend Up"
     })
 })
 

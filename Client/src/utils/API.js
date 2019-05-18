@@ -3,15 +3,15 @@ import { compileFunction } from "vm";
 const headers = {
   "Content-Type": "application/json"
 };
-// const burl = "http://muginclermont.trafficmanager.net";
-const burl = "http://127.0.0.1:8001";
-const burl2 = "http://127.0.0.1:8002";
+// const backendUrl = "http://muginclermont.trafficmanager.net";
+const backendUrl = "http://127.0.0.1:8001";
+const producerUrl = "http://127.0.0.1:8002";
 export default {
-  login: function(email, password) {
+  login: function(username, password) {
     return axios.post(
-      burl + "/user/login",
+      backendUrl + "/user/login",
       {
-        email: email,
+        username: username,
         password: password
       },
       {
@@ -20,9 +20,8 @@ export default {
     );
   },
   signup: function(send) {
-    return axios.post(burl + "/user/signup", send, { headers: headers });
+    return axios.post(backendUrl + "/user/signup", send, { headers: headers });
   },
-
   isAuth: function() {
     return localStorage.getItem("token") !== null;
   },
@@ -30,15 +29,21 @@ export default {
     localStorage.clear();
   },
   retriveGoodies: function(){
-    return axios.get(burl + "/goody/all");
+    return axios.get(backendUrl + "/goody/all");
   },
   retrieveEvents: function(){
-    return axios.get(burl + "/events/all");
+    return axios.get(backendUrl + "/event/all");
   },
   registerEvent: function(body){
-    return axios.post(burl2 + "/register/event", body, {headers: headers });
+    return axios.post(producerUrl + "/register/event", body, {headers: headers });
   },
   orderGoody: function(body){
-    return axios.post(burl2 + "/order/goody", body, {headers: headers });
+    return axios.post(producerUrl + "/order/goody", body, {headers: headers });
+  },
+  retriveOrderedGoodies: function(){
+    return axios.get(backendUrl + "/goody/ordered?username=axel");
+  },
+  retrieveRegisteredEvents: function(){
+    return axios.get(backendUrl + "/event/registered?username=axel");
   }
 };

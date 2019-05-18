@@ -5,7 +5,7 @@ var eventRegisterSchema = mongoose.Schema({
 		type: String,
 		required: true
 	},
-	eventName: {
+	eventname: {
         type: String,
         required: true
     },

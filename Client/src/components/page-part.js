@@ -3,9 +3,9 @@ import React, { Component } from 'react';
 class PagePart extends Component {
     render() {
         return (
-            <div className="fill">
-                <h3 className="page-title pull-left">{this.props.title}</h3>
-                <div className="page-content">
+            <div className="div-title">
+                <h3 className="page-title">{this.props.title}</h3>
+                <div className="">
                     {this.props.children}
                 </div>    
             </div>

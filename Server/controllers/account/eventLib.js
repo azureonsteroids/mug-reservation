@@ -1,10 +1,10 @@
-const Goody = require('../../schema/goodySchema.js');
-const GoodyOrder = require('../../schema/goodyOrderSchema.js');
+const Event = require('../../schema/eventSchema.js');
+const EventRegister = require('../../schema/eventRegisterSchema.js');
 
 function findAll(req, res) {
 
     var find = new Promise(function (resolve, reject) {
-        Goody.find({}, function (err, result) {
+        Event.find({}, function (err, result) {
             if (err) {
                 reject(500);
             } else {
@@ -27,16 +27,14 @@ function findAll(req, res) {
 
 }
 
-
 function findByUsername(req, res) {
     if (!req.query.username) {
         res.status(400).json({
             "text": "Invalid request"
         })
     } else {
-
         var findByUsername = new Promise(function (resolve, reject) {
-            GoodyOrder.find({username: req.query.username}, function (err, result) {
+            EventRegister.find({username: req.query.username}, function (err, result) {
                 if (err) {
                     reject(500);
                 } else {
@@ -51,11 +49,11 @@ function findByUsername(req, res) {
 
         findByUsername.then(function (result) {
             console.log("result", result);
-            const pendingGoodies = result.filter(r => r.status === "PENDING");
-            const confirmedGoodies = result.filter(r => r.status === "CONFIRMED");
+            const pendingEvents = result.filter(r => r.status === "PENDING");
+            const confirmedEvents = result.filter(r => r.status === "CONFIRMED");
             const message = {
-                pendingGoodies: pendingGoodies,
-                confirmedGoodies: confirmedGoodies 
+                pendingEvents: pendingEvents,
+                confirmedEvents: confirmedEvents
             }
             res.status(200).json(message);
         }, function (error) {
@@ -65,6 +63,7 @@ function findByUsername(req, res) {
         })
     }
 }
+
 
 exports.findAll = findAll;
 exports.findByUsername = findByUsername;

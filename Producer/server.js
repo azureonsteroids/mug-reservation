@@ -1,5 +1,14 @@
 const express = require("express");
 const bodyParser = require('body-parser');
+const mongoose = require("mongoose");
+const { mongoDbUrl } = require('./config/config');
+
+mongoose.connect('mongodb://' + mongoDbUrl + '/mug').then(() => {
+    console.log('Connected to mongoDB')
+}).catch(e => {
+    console.log('Error while DB connecting');
+    console.log(e);
+});
 
 const app = express();
 

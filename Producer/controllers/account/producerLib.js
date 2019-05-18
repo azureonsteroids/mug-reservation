@@ -1,7 +1,7 @@
 const { ServiceBusClient } = require("@azure/service-bus");
 const { busConnectionString, goodiesQueueName, eventsQueueName } = require('../../config/config');
-const { GoodyOrder } = require ('../../schema/goodyOrderSchema');
-const { EventRegister } = require ('../../schema/eventRegisterSchema');
+const GoodyOrder = require ('../../schema/goodyOrderSchema');
+const EventRegister = require ('../../schema/eventRegisterSchema');
 
 function registerGoody(req, res) {
     if (!req.body.username || !req.body.goodyName) {
@@ -23,18 +23,14 @@ function registerGoody(req, res) {
                 label: "goody"
             };
 
-            console.log(`Sending message: ${goodyOrder.body.username} - ${goodyOrder.body.goodyname}`);
-            sender.send(goodyOrder);
-            client.close();
-
             //TODO move me in a function !
             var findGoodyOrder = new Promise(function (resolve, reject) {
-                GoodyRegister.findOne({
+                GoodyOrder.findOne({
                     username: goodyOrder.body.username,
-                    goodyname: goodyOrder.body.eventname
+                    goodyname: goodyOrder.body.goodyname
                 }, function (err, result) {
                     if (err) {
-                        reject(500);
+                        reject(err);
                     } else {
                         if (result) {
                             reject(204)
@@ -43,17 +39,23 @@ function registerGoody(req, res) {
                         }
                     }
                 })
-            })
+            });
 
             findGoodyOrder.then(function () {
+                console.log(`Sending message: ${goodyOrder.body.username} - ${goodyOrder.body.goodyname}`);
+                sender.send(goodyOrder);
+                client.close();
+
                 // save the event registering if not already exist.
-                goodyOrder.status = "PENDING";
-                var _e = new EventRegister(goodyOrder.body);
-                _e.save(function (err, event) {
+                goodyOrder.body.status = "PENDING";
+                var _g = new GoodyOrder(goodyOrder.body);
+                _g.save(function (err, event) {
                     if (err) {
                         res.status(500).json({
                             "text": "Internal Error"
                         })
+                    }else{
+                        res.status(200).json(goodyOrder.body);
                     } 
                 })
             }, function (error) {
@@ -72,10 +74,9 @@ function registerGoody(req, res) {
                         res.status(500).json({
                             "text": "internal error"
                         })
+                        break;
                 }
             })
-
-            res.status(200).json(goodyOrder.body);
         } catch (err) {
             res.status(500).json({ error: err });
         } finally {
@@ -85,7 +86,7 @@ function registerGoody(req, res) {
 }
 
 function registerEvent(req, res) {
-    if (!req.body.username || !req.body.eventName) {
+    if (!req.body.username || !req.body.eventname) {
         res.status(400).json({
             "text": "Invalid request"
         })
@@ -99,14 +100,10 @@ function registerEvent(req, res) {
             const eventRegister = {
                 body: {
                     username: req.body.username,
-                    eventname: req.body.eventName
+                    eventname: req.body.eventname
                 },
                 label: "event"
             };
-
-            console.log(`Sending message: ${eventRegister.body.username} - ${eventRegister.body.eventname}`);
-            sender.send(eventRegister);
-            client.close();
 
             //TODO move me in a function !
             var findEventRegister = new Promise(function (resolve, reject) {
@@ -127,15 +124,21 @@ function registerEvent(req, res) {
             })
     
             findEventRegister.then(function () {
+                console.log(`Sending message: ${eventRegister.body.username} - ${eventRegister.body.eventname}`);
+                sender.send(eventRegister);
+                client.close();
+                
                  // save the event registering if not already exist.
-                eventRegister.status = "PENDING";
+                eventRegister.body.status = "PENDING";
                 var _e = new EventRegister(eventRegister.body);
                 _e.save(function (err, event) {
                     if (err) {
                         res.status(500).json({
                             "text": "Internal Error"
                         })
-                    } 
+                    } else {
+                        res.status(200).send(eventRegister.body);
+                    }
                 })
             }, function (error) {
                 switch (error) {
@@ -154,10 +157,7 @@ function registerEvent(req, res) {
                             "text": "internal error"
                         })
                 }
-            })
-          
-
-            res.status(200).send(eventRegister.body);
+            })          
         } catch (err) {
             res.status(500).json({ error: err });
         } finally {

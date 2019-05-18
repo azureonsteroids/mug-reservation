@@ -1,12 +1,12 @@
 import React from "react";
-import { Button, FormGroup, FormControl, ControlLabel } from "react-bootstrap";
+import { Button, FormGroup, FormControl, FormLabel  } from "react-bootstrap";
 import API from "../../utils/API";
 
 export class Signup extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      email: "",
+      username: "",
       password: "",
       cpassword: ""
     };
@@ -14,7 +14,7 @@ export class Signup extends React.Component {
     this.send.bind(this);
   }
   send = event => {
-    if (this.state.email.length === 0) {
+    if (this.state.username.length === 0) {
       return;
     }
     if (
@@ -24,7 +24,7 @@ export class Signup extends React.Component {
       return;
     }
     var _send = {
-      email: this.state.email,
+      username: this.state.username,
       password: this.state.password
     };
     API.signup(_send).then(
@@ -46,17 +46,16 @@ export class Signup extends React.Component {
   render() {
     return (
       <div className="Login">
-        <FormGroup controlId="email" bsSize="large">
-          <ControlLabel>Email</ControlLabel>
+        <FormGroup controlId="username" bsSize="large">
+          <FormLabel >Username</FormLabel >
           <FormControl
             autoFocus
-            type="email"
-            value={this.state.email}
+            value={this.state.username}
             onChange={this.handleChange}
           />
         </FormGroup>
         <FormGroup controlId="password" bsSize="large">
-          <ControlLabel>Password</ControlLabel>
+          <FormLabel >Password</FormLabel >
           <FormControl
             value={this.state.password}
             onChange={this.handleChange}
@@ -64,7 +63,7 @@ export class Signup extends React.Component {
           />
         </FormGroup>
         <FormGroup controlId="cpassword" bsSize="large">
-          <ControlLabel>Confirm Password</ControlLabel>
+          <FormLabel >Confirm Password</FormLabel >
           <FormControl
             value={this.state.cpassword}
             onChange={this.handleChange}

@@ -1,7 +1,18 @@
 const { ServiceBusClient, ReceiveMode } = require("@azure/service-bus");
 const { busConnectionString, queueName } = require("./config/config");
+const goodyLib = require("./libs/goodyLib");
 
-async function main(connectionString) {
+const mongoose = require("mongoose");
+const { mongoDbUrl } = require('./config/config');
+
+mongoose.connect('mongodb://' + mongoDbUrl + '/mug').then(() => {
+    console.log('Connected to mongoDB')
+}).catch(e => {
+    console.log('Error while DB connecting');
+    console.log(e);
+});
+
+async function main() {
   const ns = ServiceBusClient.createFromConnectionString(busConnectionString);
   const client = ns.createQueueClient(queueName);
   const receiver = client.createReceiver(ReceiveMode.peekLock);
@@ -16,6 +27,9 @@ async function main(connectionString) {
 
     await messages[0].complete();
     await client.close();
+
+    console.log("msg", messages[0].body);
+    await goodyLib.confirmedGoody(messages[0].body);  
   } catch (err) {
     console.error(err);
   } finally {

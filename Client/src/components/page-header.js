@@ -8,6 +8,7 @@ class PageHeader extends Component {
     super(props);
     this.disconnect.bind(this);
   }
+
   disconnect = event => {
     API.logout();
     window.location = "/";
@@ -20,14 +21,14 @@ class PageHeader extends Component {
           <h3 className="home-title pull-left">MUG Shop</h3>
         </div>
         <div className="col-sm-2 logout-command-div">
-          <CommandHeader className="command-div"  />
-            <Button
-              onClick={this.disconnect}
-              bsSize="small"
-              bsStyle="logout" // custom css btn-logout
-              type="submit"
-            >
-              Logout
+          <CommandHeader className="command-div" />
+          <Button
+            onClick={this.disconnect}
+            bsSize="small"
+            bsStyle="logout" // custom css btn-logout
+            type="submit"
+          >
+            Logout
             </Button>
         </div>
       </div>

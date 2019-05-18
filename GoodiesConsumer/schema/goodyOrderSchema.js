@@ -16,7 +16,7 @@ var goodyOrderSchema = mongoose.Schema({
 },{ timestamps: { createdAt: 'created_at' }})
 
 
-goddyOrderSchema.methods = {
+goodyOrderSchema.methods = {
 }
 
 module.exports = mongoose.model('GoodyOrder', goodyOrderSchema);

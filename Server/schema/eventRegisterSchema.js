@@ -1,11 +1,11 @@
 const mongoose = require('mongoose');
 
-var goodyOrderSchema = mongoose.Schema({
+var eventRegisterSchema = mongoose.Schema({
 	username: {
 		type: String,
 		required: true
 	},
-	goodyname: {
+	eventName: {
         type: String,
         required: true
     },
@@ -16,7 +16,7 @@ var goodyOrderSchema = mongoose.Schema({
 },{ timestamps: { createdAt: 'created_at' }})
 
 
-goodyOrderSchema.methods = {
+eventRegisterSchema.methods = {
 }
 
-module.exports = mongoose.model('GoodyOrder', goodyOrderSchema);
+module.exports = mongoose.model('EventRegister', eventRegisterSchema);

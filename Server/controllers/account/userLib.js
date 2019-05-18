@@ -2,21 +2,21 @@ const User = require('../../schema/userSchema.js');
 const passwordHash = require("password-hash");
 
 function signup(req, res) {
-    if (!req.body.email || !req.body.password) {
+    if (!req.body.username || !req.body.password) {
         res.status(400).json({
             "text": "Invalid request"
         })
     } else {
         var user = {
-            email: req.body.email,
+            username: req.body.username,
             password: passwordHash.generate(req.body.password)
         }
         var findUser = new Promise(function (resolve, reject) {
             User.findOne({
-                email: user.email
+                username: user.username
             }, function (err, result) {
                 if (err) {
-                    reject(500);
+                    reject(err);
                 } else {
                     if (result) {
                         reject(204)
@@ -63,13 +63,13 @@ function signup(req, res) {
 }
 
 function login(req, res) {
-    if (!req.body.email || !req.body.password) {
+    if (!req.body.username || !req.body.password) {
         res.status(400).json({
             "text": "Invalid request"
         })
     } else {
         User.findOne({
-            email: req.body.email
+            username: req.body.username
         }, function (err, user) {
             if (err) {
                 res.status(500).json({

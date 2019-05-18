@@ -1,25 +1,25 @@
 import React from "react";
-import { Button, FormGroup, FormControl, ControlLabel } from "react-bootstrap";
+import { Button, FormGroup, FormControl, FormLabel  } from "react-bootstrap";
 import API from "../../utils/API";
 
 export class Login extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      email: "",
+      username: "",
       password: ""
     };
     this.handleChange.bind(this);
     this.send.bind(this);
   }
   send = event => {
-    if (this.state.email.length === 0) {
+    if (this.state.username.length === 0) {
       return;
     }
     if (this.state.password.length === 0) {
       return;
     }
-    API.login(this.state.email, this.state.password).then(
+    API.login(this.state.username, this.state.password).then(
       function(data) {
         localStorage.setItem("token", data.data.token);
         window.location = "/home";
@@ -38,17 +38,16 @@ export class Login extends React.Component {
   render() {
     return (
       <div className="Login">
-        <FormGroup controlId="email" bsSize="large">
-          <ControlLabel>Email</ControlLabel>
+        <FormGroup controlId="username" bsSize="large">
+          <FormLabel >Username</FormLabel >
           <FormControl
             autoFocus
-            type="email"
-            value={this.state.email}
+            value={this.state.username}
             onChange={this.handleChange}
           />
         </FormGroup>
         <FormGroup controlId="password" bsSize="large">
-          <ControlLabel>Password</ControlLabel>
+          <FormLabel >Password</FormLabel >
           <FormControl
             value={this.state.password}
             onChange={this.handleChange}

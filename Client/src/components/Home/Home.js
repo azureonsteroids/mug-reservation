@@ -1,11 +1,11 @@
 import React from "react";
-import { Button } from "react-bootstrap";
-
 import PageHeader from "../page-header";
 import PagePart from "../page-part";
 import GoodyCard from "../goody-card";
+import EventCard from "../event-card";
 
 import API from "../../utils/API";
+import { CardDeck } from "react-bootstrap";
 
 export class Home extends React.Component {
   constructor(props) {
@@ -26,7 +26,9 @@ export class Home extends React.Component {
     });
 
     API.retrieveEvents().then((events) => {
-
+      const currentState = this.state;
+      currentState.events = events.data;
+      this.setState(currentState);
     })
   };
 
@@ -40,7 +42,8 @@ export class Home extends React.Component {
   }
 
   _renderEvents(event, index) {
-    return <li key={index}>{event.name} - {event.date}</li>
+    console.log("event", event);
+    return <EventCard event={event}></EventCard>
   }
 
   render() {
@@ -50,17 +53,20 @@ export class Home extends React.Component {
       <div>
         <PageHeader />
         <div className="row">
-          <div className="col-sm-5 goodies-part">
+          <div className="col-sm-7 goodies-part">
+          <CardDeck>
+
             <PagePart title="MUG Goodies" >
               {
                 goodies ?
-                  goodies.map(this._renderGoodies)
-                  :
-                  "no data to display"
+                goodies.map(this._renderGoodies)
+                :
+                "no data to display"
               }
             </PagePart>
+              </CardDeck>
           </div>
-          <div className="col-sm-7 events-part" >
+          <div className="col-sm-5 events-part" >
             <PagePart title="MUG Events">
               {
                 events ?
