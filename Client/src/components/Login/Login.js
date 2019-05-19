@@ -11,7 +11,11 @@ export class Login extends React.Component {
     };
     this.handleChange.bind(this);
     this.send.bind(this);
+    this.redirect.bind(this);
   }
+  redirect = event => {
+    window.location = "/signup";
+  };
   send = event => {
     if (this.state.username.length === 0) {
       return;
@@ -56,6 +60,9 @@ export class Login extends React.Component {
         </FormGroup>
         <Button onClick={this.send} block bsSize="large" type="submit">
           Connexion
+        </Button>
+        <Button onClick={this.redirect} block bsSize="large" type="submit">
+          Sign up
         </Button>
       </div>
     );

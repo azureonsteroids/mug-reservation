@@ -48,7 +48,6 @@ function findByUsername(req, res) {
         });
 
         findByUsername.then(function (result) {
-            console.log("result", result);
             const pendingEvents = result.filter(r => r.status === "PENDING");
             const confirmedEvents = result.filter(r => r.status === "CONFIRMED");
             const message = {

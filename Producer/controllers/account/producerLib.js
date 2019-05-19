@@ -42,7 +42,6 @@ function registerGoody(req, res) {
             });
 
             findGoodyOrder.then(function () {
-                console.log(`Sending message: ${goodyOrder.body.username} - ${goodyOrder.body.goodyname}`);
                 sender.send(goodyOrder);
                 client.close();
 
@@ -124,7 +123,6 @@ function registerEvent(req, res) {
             })
     
             findEventRegister.then(function () {
-                console.log(`Sending message: ${eventRegister.body.username} - ${eventRegister.body.eventname}`);
                 sender.send(eventRegister);
                 client.close();
                 

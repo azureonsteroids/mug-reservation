@@ -42,7 +42,6 @@ export class Home extends React.Component {
   }
 
   _renderEvents(event, index) {
-    console.log("event", event);
     return <EventCard event={event}></EventCard>
   }
 

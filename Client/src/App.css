@@ -28,20 +28,24 @@
 }
 
 .logout-command-div {
-  display: inline-flex;
-  margin-top: 0.5em;
-  align-items: center
+  
 }
 
 .not-centered-text {
   text-align: unset;
 }
 .command-div {
-  margin-right: 1em;
+  display: inline-block;
+  margin: 0.2em;
+}
+
+.button-command-div{
+  display: inline-block;
+  margin-top: 0.35em;
 }
 
 .command-header {
-  float: right !important
+  vertical-align: middle;
 }
 
 .goodies-part {

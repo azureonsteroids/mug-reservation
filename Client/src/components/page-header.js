@@ -17,11 +17,13 @@ class PageHeader extends Component {
   render() {
     return (
       <div className="home-header row">
-        <div className="col-sm-10 not-centered-text">
+        <div className="col-sm-9 not-centered-text">
           <h3 className="home-title pull-left">MUG Shop</h3>
         </div>
-        <div className="col-sm-2 logout-command-div">
+        <div className="col-sm-2">
           <CommandHeader className="command-div" />
+        </div>
+        <div className="col-sm-1 button-command-div">
           <Button
             onClick={this.disconnect}
             bsSize="small"

@@ -28,7 +28,6 @@ async function main() {
     await messages[0].complete();
     await client.close();
 
-    console.log("msg", messages[0].body);
     await goodyLib.confirmedGoody(messages[0].body);  
   } catch (err) {
     console.error(err);
@@ -38,4 +37,4 @@ async function main() {
 }
 
 
-setInterval(main, 3000);
+setInterval(main, 4000);
