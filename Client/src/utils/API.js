@@ -44,9 +44,9 @@ export default {
     return axios.post(producerUrl + "/order/goody", body, {headers: headers });
   },
   retriveOrderedGoodies: function(){
-    return axios.get(backendUrl + "/goody/ordered?username=axel");
+    return axios.get(backendUrl + "/goody/ordered?username=" + localStorage.getItem("username"));
   },
   retrieveRegisteredEvents: function(){
-    return axios.get(backendUrl + "/event/registered?username=axel");
+    return axios.get(backendUrl + "/event/registered?username=" + localStorage.getItem("username"));
   }
 };

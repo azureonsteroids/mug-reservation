@@ -8,7 +8,7 @@ class GoodyCard extends Component {
         this.orderOne.bind(this);
     }
     orderOne = event => {
-        API.orderGoody({ username: "axel", goodyName: this.props.goody.name });
+        API.orderGoody({ username: localStorage.getItem("username"), goodyName: this.props.goody.name });
     };
 
     render() {
