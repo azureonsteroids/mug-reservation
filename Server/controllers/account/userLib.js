@@ -38,7 +38,8 @@ function signup(req, res) {
                 } else {
                     res.status(200).json({
                         "text": "Succes",
-                        "token": user.getToken()
+                        "token": user.getToken(),
+                        "username": req.body.username
                     })
                 }
             })
@@ -87,6 +88,7 @@ function login(req, res) {
                 if (user.authenticate(req.body.password)) {
                     res.status(200).json({
                         "token": user.getToken(),
+                        "username": req.body.username,
                         "text": "Authentificated"
                     })
                 }

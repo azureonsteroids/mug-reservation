@@ -7,7 +7,6 @@ const headers = {
 const baseUrl = window.BASE_URL ? window.BASE_URL : undefined;
 
 const backendUrl = window.BASE_URL ? baseUrl + "/back" : "http://127.0.0.1:8001";
-const producerUrl = window.BASE_URL ? baseUrl + "/producer" : "http://127.0.0.1:8002";
 
 export default {
   login: function(username, password) {
@@ -38,15 +37,15 @@ export default {
     return axios.get(backendUrl + "/event/all");
   },
   registerEvent: function(body){
-    return axios.post(producerUrl + "/register/event", body, {headers: headers });
+    return axios.post(backendUrl + "/register/event", body, {headers: headers });
   },
   orderGoody: function(body){
-    return axios.post(producerUrl + "/order/goody", body, {headers: headers });
+    return axios.post(backendUrl + "/order/goody", body, {headers: headers });
   },
   retriveOrderedGoodies: function(){
-    return axios.get(backendUrl + "/goody/ordered?username=axel");
+    return axios.get(backendUrl + "/goody/ordered?username=" + localStorage.getItem("username"));
   },
   retrieveRegisteredEvents: function(){
-    return axios.get(backendUrl + "/event/registered?username=axel");
+    return axios.get(backendUrl + "/event/registered?username=" + localStorage.getItem("username"));
   }
 };

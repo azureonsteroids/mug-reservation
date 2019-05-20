@@ -34,6 +34,7 @@ export class Signup extends React.Component {
     API.signup(_send).then(
       function(data) {
         localStorage.setItem("token", data.data.token);
+        localStorage.setItem("username", data.data.username);
         window.location = "/home";
       },
       function(error) {

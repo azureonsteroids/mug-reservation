@@ -8,7 +8,7 @@ class EventCard extends Component {
     this.registerOne.bind(this);
   }
   registerOne = event => {
-    API.registerEvent({username: "axel", eventname: this.props.event.name});
+    API.registerEvent({username: localStorage.getItem("username"), eventname: this.props.event.name});
   };
 
   render() {

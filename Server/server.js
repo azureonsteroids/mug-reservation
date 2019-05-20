@@ -39,6 +39,10 @@ var eventRouter = express.Router();
 app.use('/event', eventRouter);
 require(__dirname + '/controllers/eventController')(eventRouter);
 
+var router = express.Router();
+app.use('/', router);
+require(__dirname + '/controllers/producerController')(router);
+
 app.get('/', (req, res) => {
     return res.status(200).json({
         "text": "base backend Up"
