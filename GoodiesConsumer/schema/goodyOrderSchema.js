@@ -5,7 +5,7 @@ var goodyOrderSchema = mongoose.Schema({
 		type: String,
 		required: true
 	},
-	goodyName: {
+	goodyname: {
         type: String,
         required: true
     },

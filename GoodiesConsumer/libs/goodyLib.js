@@ -6,7 +6,7 @@ function confirmedGoody(goody) {
     } else {
         var query ={
             username: goody.username,
-            eventname: goody.eventname
+            goodyname: goody.goodyname
         };
         goody.status = "CONFIRMED";
         GoodyOrder.findOneAndUpdate(query, goody, function(err, doc){

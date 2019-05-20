@@ -37,4 +37,4 @@ async function main() {
 }
 
 
-setInterval(main, 4000);
+setInterval(main, 6000);
