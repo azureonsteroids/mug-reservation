@@ -1,11 +1,14 @@
 import axios from "axios";
-import { compileFunction } from "vm";
+
 const headers = {
   "Content-Type": "application/json"
 };
-// const backendUrl = "http://muginclermont.trafficmanager.net";
-const backendUrl = "http://127.0.0.1:8001";
-const producerUrl = "http://127.0.0.1:8002";
+
+const baseUrl = window.BASE_URL ? window.BASE_URL : undefined;
+
+const backendUrl = window.BASE_URL ? baseUrl + "/back" : "http://127.0.0.1:8001";
+const producerUrl = window.BASE_URL ? baseUrl + "/producer" : "http://127.0.0.1:8002";
+
 export default {
   login: function(username, password) {
     return axios.post(

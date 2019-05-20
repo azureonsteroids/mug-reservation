@@ -30,6 +30,7 @@ function signup(req, res) {
         findUser.then(function () {
             var _u = new User(user);
             _u.save(function (err, user) {
+                console.log(err);
                 if (err) {
                     res.status(500).json({
                         "text": "Internal Error"
@@ -42,6 +43,7 @@ function signup(req, res) {
                 }
             })
         }, function (error) {
+            console.log(error);
             switch (error) {
                 case 500:
                     res.status(500).json({

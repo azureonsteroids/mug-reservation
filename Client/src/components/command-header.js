@@ -44,7 +44,7 @@ class CommandHeader extends Component {
     const confirmedGoodies = orderedGoodies.confirmedGoodies ? orderedGoodies.confirmedGoodies.length : "";
     const pendingEvents = registeredEvents.pendingEvents ? registeredEvents.pendingEvents.length : "";
     const confirmedEvents = registeredEvents.confirmedEvents ? registeredEvents.confirmedEvents.length : "";
-    const goodiesMessage = pendingGoodies == "" ? confirmedGoodies + "ordered" : confirmedGoodies + " confirmed on " + (pendingGoodies + confirmedGoodies) + " ordered";
+    const goodiesMessage = pendingGoodies == "" ? confirmedGoodies + " ordered" : confirmedGoodies + " confirmed on " + (pendingGoodies + confirmedGoodies) + " ordered";
     const eventsMessage = pendingEvents == "" ? confirmedEvents + " registered" : confirmedEvents + " confirmed on " + (pendingEvents + confirmedEvents) + " registered";
     return (
       <div className={this.props.className}>

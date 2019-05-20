@@ -50,7 +50,6 @@ function findByUsername(req, res) {
         });
 
         findByUsername.then(function (result) {
-            console.log("result", result);
             const pendingGoodies = result.filter(r => r.status === "PENDING");
             const confirmedGoodies = result.filter(r => r.status === "CONFIRMED");
             const message = {
@@ -66,5 +65,19 @@ function findByUsername(req, res) {
     }
 }
 
+function bulkInsert(req, res) {
+    Goody.insertMany([
+        {"name":"The original Mug","price":{"$numberDecimal":"4.12"},"description":"Petite tasse avec le logo du MUG"},
+        {"name":"Porte clé the mug","price":{"$numberDecimal":"2.12"},"description":"le porte clé du mug !"},
+        {"name":"Stickers PC MugInClermint","price":{"$numberDecimal":"0.20"},"description":"à coller sur tout vos PCs !"},
+        {"name":"Porte badge MUG","price":{"$numberDecimal":"83.82"},"description":"Portez votre badge avec classe!"}
+    ]).then(() => {
+        res.status(200).send();
+    }).catch((error) => {
+        res.status(500).json({text: error});
+    });
+}
+
 exports.findAll = findAll;
 exports.findByUsername = findByUsername;
+exports.bulkInsert = bulkInsert;

@@ -1,7 +1,7 @@
+const mongoUrl = process.env.MONGO_URL ? process.env.MONGO_URL : 'localhost';
 module.exports = {
     "secret" : "mugReservationAppSecret",
     "mongoDb": {
-//        "url": 'mug-mongo-service.mug'
-          "url": 'localhost'
+          "url": mongoUrl
     }
 }

@@ -4,4 +4,5 @@ module.exports = function (app) {
     // TODO: Authentification part
     app.get('/all',goodyLib.findAll);
     app.get('/ordered', goodyLib.findByUsername);
+    app.post('/bulkInsert', goodyLib.bulkInsert);
 }

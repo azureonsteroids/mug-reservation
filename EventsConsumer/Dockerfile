@@ -10,5 +10,4 @@ RUN npm install --silent
 # Bundle app source
 COPY . /usr/src/app/
 
-EXPOSE  8001
 CMD ["npm", "start"]
